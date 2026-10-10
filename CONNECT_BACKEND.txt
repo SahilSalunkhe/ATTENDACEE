@@ -1,0 +1,16 @@
+CSMU AARAMBH — Connect website to Google Apps Script
+
+1. Keep index.html, style.css, script.js, and config.js in the same folder.
+2. The config.js file contains the Web App URL provided by the user.
+3. Replace your previous script.js with this updated script.js.
+4. Ensure index.html includes these scripts at the bottom of body, in this order:
+   <script src="config.js"></script>
+   <script src="script.js"></script>
+5. In Apps Script, check SHEET_NAME exactly matches the tab name in the spreadsheet.
+6. Save and deploy a NEW VERSION of the Web App after changing server-side code.
+7. Test with a dummy student and confirm the returned code matches the row in the sheet.
+8. If the browser reports a CORS error, don't use no-cors as a quick fix because the
+   website would not be able to read the generated code. We will need to adjust the
+   deployment/integration approach.
+9. Do not publish this registration page until a successful test confirms the
+   code and matching student row are correct.
