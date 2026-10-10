@@ -1,0 +1,53 @@
+CSMU AARAMBH 2026 — Vercel integration fix
+===========================================
+
+Files:
+- index.html and style.css: existing responsive UI/design
+- script.js: uses same-origin /api/register instead of google.script.run
+- api/register.js: Vercel serverless proxy to Google Apps Script
+- Code.gs: Apps Script doPost JSON endpoint
+- config.js: informational only
+- SETUP.txt: these steps
+
+IMPORTANT: This fixes the hosting mismatch. Vercel-hosted pages cannot use
+google.script.run. The browser calls /api/register on the same Vercel domain;
+the Vercel function calls Apps Script server-to-server, so browser CORS is avoided.
+
+1) Apps Script
+- Open the Apps Script project attached to the Attendance Management spreadsheet.
+- Replace Code.gs with the Code.gs in this ZIP.
+- Change SHEET_NAME = "Sheet1" to the exact bottom sheet-tab name.
+- Save.
+- Deploy > Manage deployments > Edit > New version > Deploy.
+- Confirm deployment is a Web app, Execute as: Me, and access allows the Vercel
+  server request (normally Anyone, if your account policy allows it).
+- Use the deployed /exec URL. URL currently supplied:
+https://script.google.com/macros/s/AKfycbx9aTkx0RAPKFqUamYu8DnkT7i5XzPY_8NZjk7bvk2BFcESqxLdm2eeiwtrVBIgkw56/exec
+
+2) Vercel files
+- Extract ZIP and upload/commit index.html, style.css, script.js, config.js and api/register.js
+  at the project root, with api/register.js inside an "api" folder.
+- If your Vercel project is already connected to GitHub, commit and push the files.
+- Ensure your project serves index.html at the root. This ZIP is a static frontend plus
+  Vercel serverless function; Vercel will recognize /api/register.js.
+
+3) Environment variable
+- Vercel Dashboard > Project > Settings > Environment Variables
+- Name: APPS_SCRIPT_URL
+- Value: https://script.google.com/macros/s/AKfycbx9aTkx0RAPKFqUamYu8DnkT7i5XzPY_8NZjk7bvk2BFcESqxLdm2eeiwtrVBIgkw56/exec
+- Apply to Production (and Preview if testing previews).
+- Save, then redeploy the latest deployment so the function receives the variable.
+
+4) Test
+- Open the Vercel website URL (not local index.html).
+- Submit a test registration with a test name/number.
+- Confirm the returned CSMU code appears and the exact same code is in column A on the
+  same row as the student details in Google Sheets.
+- Do not publish real registrations until this test succeeds.
+
+If Vercel API returns a 502 or unexpected response, check Vercel > Project > Logs and
+Apps Script > Executions. An Apps Script deployment permission error or stale /exec URL
+must be fixed there. Do not use no-cors; the frontend needs to read the returned code.
+
+5) Node runtime note
+- package.json sets type=module so api/register.js can use export default.

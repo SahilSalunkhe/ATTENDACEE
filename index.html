@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090e1b">
+  <title>AARAMBH 2026 | CSMU Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <nav class="topbar">
+      <a class="brand" href="#" aria-label="CSMU AARAMBH">
+        <span class="brand-mark">A</span>
+        <span><strong>CSMU</strong><small>STUDENT EVENTS</small></span>
+      </a>
+      <span class="event-pill">OFFICIAL REGISTRATION</span>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">CHHATRAPATI SHIVAJI MAHARAJ UNIVERSITY</p>
+        <h1>Your next chapter <span>starts here.</span></h1>
+        <p class="hero-description">Register for AARAMBH 2026 — the beginning of something unforgettable. Fill in your details carefully to receive your unique attendance code.</p>
+        <div class="hero-points">
+          <p>✦ Quick registration</p>
+          <p>✦ Unique attendance code</p>
+        </div>
+        <p class="hero-note">Your attendance code will be generated after your registration is saved successfully.</p>
+      </div>
+
+      <section class="form-card">
+        <header class="card-heading">
+          <p class="card-kicker">AARAMBH <span>2026</span></p>
+          <h2>Student Registration</h2>
+          <p>All fields marked * are required.</p>
+        </header>
+
+        <form id="registration-form">
+          <label for="fullName">Full Name <span>*</span></label>
+          <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="department">Department <span>*</span></label>
+              <select id="department" name="department" required>
+                <option value="" disabled selected>Select department</option>
+                <option>Pharmacy</option>
+                <option>Management</option>
+                <option>Engineering</option>
+                <option>Computer Applications</option>
+                <option>Law</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="course">Course <span>*</span></label>
+              <input id="course" name="course" type="text" placeholder="e.g. B.Pharm" maxlength="80" required>
+            </div>
+          </div>
+
+          <label for="year">Academic Year <span>*</span></label>
+          <select id="year" name="year" required>
+            <option value="" disabled selected>Select your year</option>
+            <option>First Year</option>
+            <option>Second Year</option>
+            <option>Third Year</option>
+            <option>Fourth Year</option>
+            <option>Fifth Year</option>
+            <option>Other</option>
+          </select>
+
+          <label for="whatsapp">WhatsApp Number <span>*</span></label>
+          <input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" minlength="10" maxlength="10" required>
+
+          <label class="consent">
+            <input id="consent" type="checkbox" required>
+            <span>I confirm that my details are correct and may be used for event registration and attendance.</span>
+          </label>
+
+          <button class="submit-btn" id="submit-button" type="submit">
+            <span id="submit-label">Complete Registration</span><span class="button-arrow">↗</span>
+          </button>
+          <p class="privacy-note">Your details are used for event registration and attendance management.</p>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </form>
+
+        <section id="success-panel" class="success-panel" hidden>
+          <div class="success-check">✓</div>
+          <p class="success-kicker">REGISTRATION CONFIRMED</p>
+          <h2>You're on the list.</h2>
+          <p>Your registration has been recorded. Save your attendance code.</p>
+          <div class="code-label">YOUR ATTENDANCE CODE</div>
+          <div id="student-code" class="student-code"></div>
+          <button id="copy-code" class="copy-btn" type="button">Copy code ⧉</button>
+          <p class="success-footnote">Keep this code safe and bring it with you to AARAMBH 2026.</p>
+          <button id="register-another" class="secondary-btn" type="button">Register another student</button>
+        </section>
+
+        <footer class="card-footer">
+          <span>CSMU · AARAMBH 2026</span><span>MADE FOR THE MOMENT ✦</span>
+        </footer>
+      </section>
+    </section>
+    <footer class="page-footer"><span>© 2026 CSMU Student Events</span><span>Registration Portal</span></footer>
+  </main>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
